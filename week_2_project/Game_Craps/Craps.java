@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 
-import jdk.nashorn.internal.scripts.JO;
+
 
 public class Craps extends JFrame {
 	// Initializing object
