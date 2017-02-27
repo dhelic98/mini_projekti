@@ -1,25 +1,23 @@
 package tic_Tac_Toe;
 
-import java.awt.BorderLayout;
+
 import java.awt.Container;
 import java.awt.GridLayout;
-import java.awt.Image;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+
 public class Tic_Tac_Toe_Game extends JFrame {
 
-	JButton[][] buttons = new JButton[3][3];
-	private int moveCounter = 1;
+	private JButton[][] buttons = new JButton[3][3];
+	private int moveCounter = 0;
 
 	public Tic_Tac_Toe_Game() {
 		JPanel buttonPanel = new JPanel(new GridLayout(3, 3));
@@ -43,25 +41,25 @@ public class Tic_Tac_Toe_Game extends JFrame {
 		//Method that check if game is over
 		if ((buttons[row][0].getText() == (buttons[row][1].getText()))
 				&& (buttons[row][1].getText() == (buttons[row][2].getText()))
-				&& (buttons[1][1].getText() != "")) {
+				&& (buttons[row][0].getText() != "")) {
 			JOptionPane.showMessageDialog(null, "Game Over!!!\n"
-					+ buttons[row][0].getText() + " won");
+					+ buttons[row][column].getText() + " won");
 			reset();
 
 		} else if ((buttons[0][column].getText() == (buttons[1][column]
 				.getText()))
 				&& (buttons[1][column].getText() == (buttons[2][column]
-						.getText())) && (buttons[1][1].getText() != "")) {
+						.getText())) && (buttons[0][column].getText() != "")) {
 
 			JOptionPane.showMessageDialog(null, "Game Over!!!\n"
-					+ buttons[row][0].getText() + " won");
+					+ buttons[row][column].getText() + " won");
 			reset();
 
 		} else if ((buttons[0][0].getText() == (buttons[1][1].getText()))
 				&& (buttons[1][1].getText() == (buttons[2][2].getText()))
 				&& (buttons[1][1].getText() != "")) {
 			JOptionPane.showMessageDialog(null, "Game Over!!!\n"
-					+ buttons[row][0].getText() + " won");
+					+ buttons[row][column].getText() + " won");
 			reset();
 
 		} else if ((buttons[0][2].getText() == (buttons[1][1].getText()))
@@ -69,7 +67,7 @@ public class Tic_Tac_Toe_Game extends JFrame {
 				&& (buttons[1][1].getText() != "")) {
 
 			JOptionPane.showMessageDialog(null, "Game Over!!!\n"
-					+ buttons[row][0].getText() + " won");
+					+ buttons[row][column].getText() + " won");
 			reset();
 
 		}
@@ -84,7 +82,7 @@ public class Tic_Tac_Toe_Game extends JFrame {
 				buttons[i][j].setEnabled(true);
 			}
 		}
-		moveCounter = 1;
+		moveCounter = 0;
 	}
 
 	public static void main(String[] args) {
@@ -101,6 +99,8 @@ public class Tic_Tac_Toe_Game extends JFrame {
 	private class moveListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
+			//counting moves
+			moveCounter++;
 
 			// getting source from action listener
 			// and checking which button was pressed
@@ -202,8 +202,8 @@ public class Tic_Tac_Toe_Game extends JFrame {
 
 			}
 
-			moveCounter++;
-			if (moveCounter > 9) {
+			
+			if (moveCounter == 9) {
 				// Reseting game if it is a draw
 				JOptionPane.showMessageDialog(null, "It was a draw");
 				reset();
