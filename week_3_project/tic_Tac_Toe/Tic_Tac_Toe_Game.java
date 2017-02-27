@@ -194,7 +194,7 @@ public class Tic_Tac_Toe_Game extends JFrame {
 					isGameOver(2, 1);
 
 				} else if (e.getSource() == buttons[2][0]) {
-					buttons[2][0].setText("0");
+					buttons[2][0].setText("O");
 					buttons[2][0].setEnabled(false);
 					isGameOver(2, 0);
 
